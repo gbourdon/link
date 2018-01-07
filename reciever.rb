@@ -18,7 +18,7 @@ class TCPSocket
     def getMessage
         type = self.gets.chomp
         augments = self.gets.chomp.parseAugments
-        message = self.gets.chomp# if augments["Message"] = true
+        message = self.gets.chomp if augments["Message"] == "true"
         Message.new(type, augments,message)
     end
 end
