@@ -21,11 +21,11 @@ loop do
     Thread.start(server.accept) do |client|
         message = client.getMessage
 
-        puts "Connection from :#{message.augments["Name"] != nil ? message.augments["Name"] : "Unknown Client"}"
+        puts "Connection from : #{message.augments["Sender"] != nil ? message.augments["Sender"] : "Unknown Client"}"
 
         case message.type
             when "TIME"
-                unless message.augments["Format"] != nil
+                if message.augments["Format"] != nil
                     client.puts Time.now.strftime(message.augments["Format"])
                 else
                     client.puts Time.now.ctime
